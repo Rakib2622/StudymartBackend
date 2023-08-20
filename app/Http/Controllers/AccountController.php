@@ -31,10 +31,10 @@ public function getAccount($id) {
 
 
 
-   $account->save();
-   return response()->json([
-        "message" => "record created"
-      ], 201);
+    $account->save();
+    return response()->json([
+            "message" => "record created"
+        ], 201);
     }
 
 

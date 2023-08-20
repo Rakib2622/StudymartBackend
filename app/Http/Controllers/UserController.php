@@ -87,11 +87,27 @@ class UserController extends Controller
         $users->institute = $request->institute;
         $users->passing_year = $request->passingYear;
         $users->degree = $request->degree;
+        $users->bio = $request->bio;
+        $users->description = $request->description;
+        $users->image = $request->image;
 
         $users->save();
 
         return response()->json($users);
+    }
 
+    public function updateBalance(Request $request) {
+        $users = User::where('id', $request->id)->first();
+        $users->balance = $request->balance;
+        $users->save();
+
+        return response()->json($users);
+    }
+
+    public function userprofile($id) {
+        $user = User::find($id);
+
+        return response()->json($user);
     }
 
     public function changepassword(Request $request, $id) {

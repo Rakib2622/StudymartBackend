@@ -71,6 +71,8 @@ Route::post('/userupdate', 'UserController@userupdate');
 Route::post('/changepassword/{id}', 'UserController@changepassword');
 Route::get('/userdelete/{id}', 'UserController@userdelete');
 Route::get('open', 'DataController@open');
+Route::get('/userprofile/{id}', 'UserController@userprofile');
+Route::post('/updatebalance', 'UserController@updateBalance');
 
 Route::group(['middleware' => ['jwt.verify']], function () {
     Route::get('user', 'UserController@getAuthenticatedUser');
@@ -78,11 +80,11 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 });
 
 //message routs
-Route::get('message', 'MessageController@getAllmessage');
-Route::get('message/{id}', 'MessageController@getmessage');
-Route::post('message', 'MessageController@createmessage');
-Route::put('message/{id}', 'MessageController@updatemessage');
-Route::delete('message/{id}','MessageController@deletemessage');
+Route::get('message/{userid}/{senderid}', 'MessageController@getmessage');
+Route::post('newmessage', 'MessageController@createmessage');
+Route::put('updatemessage/{id}', 'MessageController@updatemessage');
+Route::delete('delmessage/{id}','MessageController@deletemessage');
+Route::get('messagelist/{id}', 'MessageController@getmessagelist');
 
 
 //notification routs
@@ -121,3 +123,9 @@ Route::get('comment/{id}', 'CommentController@getcomment');
 Route::post('comment', 'CommentController@createcomment');
 Route::put('comment/{id}', 'CommentController@updatecomment');
 Route::delete('comment/{id}','CommentController@deletecomment');
+
+//package routs
+Route::post('package', 'PackageController@createpackage');
+Route::get('packagelist/{id}', 'PackageController@packageList');
+Route::get('getpackage/{id}', 'PackageController@getPackage');
+Route::get('allpackage', 'PackageController@allPackage');
